@@ -1,20 +1,18 @@
 
 body {
-    font-family: Tahoma;
+    font-family: "Tahoma";
 }
 
 header {
     text-align: center;
+    background-color: #ffd599;
 }
 
 #calendar {
     width: 100%;
 }
 
-#calendar a {
-    color: #8e352e;
-    text-decoration: none;
-}
+
 
 #calendar ul {
     list-style: none;
@@ -94,8 +92,6 @@ header {
     background: #f5f5f5;
     color: #666;
 }
-
-
 
 
 @media(max-width: 768px) {
