@@ -5,6 +5,7 @@ window.onload =
         url.searchParams.append('source', source);
         url.searchParams.append('sortBy', 'top');
         url.searchParams.append('apiKey', '67df228ef66d4d799240542da2a606ce');
+        const box = document.getElementById("box");
         let promise = fetch(url);
         return promise
             .then(response => {
@@ -13,7 +14,7 @@ window.onload =
                             `${response.status} ( ${response.statusText} )`
                         ))
                     }
-                    return response.json()
+                    return response.json();
                 }
             )
             .then(result => {
@@ -21,24 +22,31 @@ window.onload =
             })
             .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`));
 
-        function putMyArticle(result) {
-            let arrayOfArticles=result.articles;
-            const box = document.getElementById("box");
-            for (let i = 0; i < arrayOfArticles.length; i++) {
-                let goURL = arrayOfArticles[i].url;
-                let goImageURL = arrayOfArticles[i].urlToImage;
-                let date = new Date(arrayOfArticles[i].publishedAt).toUTCString();
-                let author = arrayOfArticles[i].author;
-                let title = arrayOfArticles[i].title;
+        function Article(result, i) {
+            this.goURL = result.articles[i].url;
+            this.goImageURL = result.articles[i].urlToImage;
+            this.date = new Date(result.articles[i].publishedAt).toUTCString();
+            this.author = result.articles[i].author;
+            this.title = result.articles[i].title;
+            this.createOneArticle = function () {
                 let myArticle = document.createElement("article");
                 myArticle.innerHTML = `
-<a href="${goURL}"> <img src="${goImageURL}" alt="loading..."></a>
-<div style="color: grey">${date}</div>
-<div>${title}</div>
-<div style="color: grey"><span>Author(s):</span> ${author}</div>
-<a href=${goURL}>To see more</a>`;
-                box.appendChild(myArticle);
+<a href="${this.goURL}"> <img src="${this.goImageURL}" alt="loading..."></a>
+<div style="color: grey">${this.date}</div>
+<div>${this.title}</div>
+<div style="color: grey"><span>Author(s):</span> ${this.author}</div>
+<a href=${this.goURL}>To see more</a>`;
+                return myArticle;
             }
+        }
+
+        function putMyArticle(result) {
+            let oneFullSide = document.createDocumentFragment();
+            for (let i = 0; i < result.articles.length; i++) {
+                let instanceOfArticle = new Article(result,i);
+                oneFullSide.appendChild(instanceOfArticle.createOneArticle());
+            }
+            box.appendChild(oneFullSide);
         }
     })("the-guardian-au");
 
