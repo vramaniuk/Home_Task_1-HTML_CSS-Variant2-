@@ -1,11 +1,11 @@
 window.onload =
     (function fetchNews(source) {
-
         const url = new URL('https://newsapi.org/v1/articles');
         url.searchParams.append('source', source);
         url.searchParams.append('sortBy', 'top');
         url.searchParams.append('apiKey', '67df228ef66d4d799240542da2a606ce');
-        const box = document.getElementById("box");
+
+(function getJSON(url) {
         let promise = fetch(url);
         return promise
             .then(response => {
@@ -20,7 +20,7 @@ window.onload =
             .then(result => {
                 putMyArticle(result);
             })
-            .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`));
+            .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`))})(url);
 
         function Article(result, i) {
             this.goURL = result.articles[i].url;
@@ -41,6 +41,7 @@ window.onload =
         }
 
         function putMyArticle(result) {
+            const box = document.getElementById("box");
             let oneFullSide = document.createDocumentFragment();
             for (let i = 0; i < result.articles.length; i++) {
                 let instanceOfArticle = new Article(result,i);
