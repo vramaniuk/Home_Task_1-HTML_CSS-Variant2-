@@ -7,12 +7,13 @@ window.onload =
 
         (async function getJson(url) {
             try {
-                const networkResponse = await fetch(url);if (!networkResponse.ok) {console.log(networkResponse.statusText); }
+                const networkResponse = await fetch(url);
+               if (!networkResponse.ok) throw new Error(`${networkResponse.status} ( ${networkResponse.statusText} )`);
                 const networkResponseJSON = await networkResponse.json();
                 putMyArticle(networkResponseJSON);
             }
             catch (error) {
-                alert(`Запрос к серверу не удался. Произошла ошибка: ${error.name}. ${error.message} ${Response.status}`);
+                alert(`Запрос к серверу не удался. Произошла ошибка: ${error.message}`);
             }
         })(url);
 
@@ -60,6 +61,7 @@ window.onload =
             box.appendChild(oneFullSide);
         }
     })("the-guardian-au");
+
 
 
 
