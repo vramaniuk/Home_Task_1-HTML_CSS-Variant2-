@@ -2,25 +2,35 @@ window.onload =
     (function fetchNews(source) {
         const url = new URL('https://newsapi.org/v1/articles');
         url.searchParams.append('source', source);
-        url.searchParams.append('sortBy', 'top');
+        url.searchParams.append('sortBy', 'op');
         url.searchParams.append('apiKey', '67df228ef66d4d799240542da2a606ce');
 
-(function getJSON(url) {
-        let promise = fetch(url);
-        return promise
-            .then(response => {
-                    if (!response.ok) {
-                        return Promise.reject(new Error(
-                            `${response.status} ( ${response.statusText} )`
-                        ))
-                    }
-                    return response.json();
-                }
-            )
-            .then(result => {
-                putMyArticle(result);
-            })
-            .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`))})(url);
+        (async function getJson(url) {
+            try {
+                const networkResponse = await fetch(url);if (!networkResponse.ok) {console.log(networkResponse.statusText);return new Error('ops'); }
+                const networkResponseJSON = await networkResponse.json();
+                putMyArticle(networkResponseJSON);
+            }
+            catch (error) {
+                alert(`Запрос к серверу не удался. Произошла ошибка: ${error.name}. ${error.message} ${Response.status}`);
+            }
+        })(url);
+
+
+        // return promise
+        //     .then(response => {
+        //             if (!response.ok) {console.log(response);
+        //                 return Promise.reject(new Error(
+        //                     `${response.status} ( ${response.statusText} )`
+        //                 ))
+        //             }
+        //             return response.json();
+        //         }
+        //     )
+        //     .then(result => {
+        //         putMyArticle(result);
+        //     })
+        //     .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`))};
 
         function Article(result, i) {
             this.goURL = result.articles[i].url;
@@ -44,7 +54,7 @@ window.onload =
             const box = document.getElementById("box");
             let oneFullSide = document.createDocumentFragment();
             for (let i = 0; i < result.articles.length; i++) {
-                let instanceOfArticle = new Article(result,i);
+                let instanceOfArticle = new Article(result, i);
                 oneFullSide.appendChild(instanceOfArticle.createOneArticle());
             }
             box.appendChild(oneFullSide);
