@@ -7,7 +7,7 @@ window.onload =
 
         (async function getJson(url) {
             try {
-                const networkResponse = await fetch(url);if (!networkResponse.ok) {console.log(networkResponse.statusText);return new Error('ops'); }
+                const networkResponse = await fetch(url);if (!networkResponse.ok) {console.log(networkResponse.statusText); }
                 const networkResponseJSON = await networkResponse.json();
                 putMyArticle(networkResponseJSON);
             }

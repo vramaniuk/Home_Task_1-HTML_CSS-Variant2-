@@ -1,67 +1,71 @@
-* {
-    padding: 0;
-    margin: 0;
-}
-
-header {
-
-    background: url("images/myheader.jpg");
-    width: 100%;
-    height: 63px;
-    font: normal bold 25px "Century";
-    text-align: center;
-    color: #b5dbdc;
-}
-
-body {
-    height: auto;
-}
-
-#box article {
-    float: none;
-    width: 100%;
-    background-color: white;
-
-}
-
-#box article img {
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-}
-
-footer {
-    background-image: url("images/footer.jpg");
-    width: 100%;
-    height: 30px;
-    font: normal bold 10px "Arial";
-
-}
-
-footer a {
-    margin: 5px;
-    text-decoration: none;
-    color: #b5dbdc;
-
-}
-
-footer a:hover {
-    text-decoration: underline;
-    color: red;
-
-}
-
-footer span {
-    display: block;
-    text-align: right;
-    color: lightgrey;
-    margin-right: 2px;
-
-}
-
 /*Styles for mobile devices*/
 
-@media screen and (min-width: 480px) {
+@media screen and (max-width: 480px) {
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    header {
+
+        background: url("images/myheader.jpg");
+        width: 100%;
+        height: 63px;
+        font: normal bold 25px "Century";
+        text-align: center;
+        color: #b5dbdc;
+    }
+
+    body {
+        height: auto;
+    }
+
+    #box article {
+        float: none;
+        width: 100%;
+        background-color: white;
+
+    }
+
+    #box article img {
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    footer {
+        background-image: url("images/footer.jpg");
+        width: 100%;
+        height: 30px;
+        font: normal bold 10px "Arial";
+
+    }
+
+    footer a {
+        margin: 5px;
+        text-decoration: none;
+        color: #b5dbdc;
+
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+        color: red;
+
+    }
+
+    footer span {
+        display: block;
+        text-align: right;
+        color: lightgrey;
+        margin-right: 2px;
+
+    }
+}
+
+/*Styles for desktop devices*/
+
+@media screen and (min-width: 481px) {
 
     * {
         padding: 0;
@@ -89,7 +93,8 @@ footer span {
         margin: 20px auto;
         max-width: 1200px;
         background: #F7FBFF;
-
+        display: flex;
+        flex-wrap: wrap;
     }
 
     #box article {
@@ -100,7 +105,6 @@ footer span {
         background: #F1F1F1;
         margin: 5px;
         padding: 15px;
-        float: left;
         box-shadow: 5px 5px 5px grey;
 
     }
