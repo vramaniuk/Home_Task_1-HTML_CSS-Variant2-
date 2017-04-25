@@ -2,22 +2,24 @@ window.onload =
     (function fetchNews(source) {
         const url = new URL('https://newsapi.org/v1/articles');
         url.searchParams.append('source', source);
-        url.searchParams.append('sortBy', 'op');
+        url.searchParams.append('sortBy', 'top');
         url.searchParams.append('apiKey', '67df228ef66d4d799240542da2a606ce');
 
         (async function getJson(url) {
             try {
                 const networkResponse = await fetch(url);
-               if (!networkResponse.ok) throw new Error(`${networkResponse.status} ( ${networkResponse.statusText} )`);
+                if (!networkResponse.ok) errorHandler(new Error(`${networkResponse.status} ( ${networkResponse.statusText} )`)) ;
                 const networkResponseJSON = await networkResponse.json();
                 putMyArticle(networkResponseJSON);
             }
             catch (error) {
-                alert(`Запрос к серверу не удался. Произошла ошибка: ${error.message}`);
+                alert(`Произошла ошибка: ${error.message}`);
             }
         })(url);
 
-
+function errorHandler(error){
+    alert(`Запрос к серверу не удался. Произошла ошибка: ${error.message}`);
+}
         // return promise
         //     .then(response => {
         //             if (!response.ok) {console.log(response);
