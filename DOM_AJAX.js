@@ -1,15 +1,17 @@
 window.onload =
     (function fetchNews(source) {
+        function get(url) {
+            return fetch(url);
+        }
         const jsonPromise = new Promise(function (resolve, reject) {
             const url = new URL('https://newsapi.org/v1/articles');
             url.searchParams.append('source', source);
             url.searchParams.append('sortBy', 'top');
             url.searchParams.append('apiKey', '67df228ef66d4d799240542da2a606ce');
-            fetch(url)
+            get(url)
                 .then(response => {
                     if (!response.ok)
                         throw new Error(`${response.status} ( ${response.statusText} )`);
-
                     resolve(response.json())
                 })
                 .catch(reject => alert(`Запрос к серверу не удался.Произошла ошибка: ${reject.message}`));
