@@ -127,6 +127,8 @@
         height: 50px;
         font: normal bold 20px "Arial";
         box-shadow: 5px 5px 5px grey;
+        display:flex;
+        align-items: center;
 
     }
 
@@ -134,17 +136,20 @@
         margin: 30px;
         text-decoration: none;
         color: #b5dbdc;
+        flex:1;
 
     }
 
     footer a:hover {
         text-decoration: underline;
         color: red;
+        flex:1;
 
     }
 
     footer span {
-        display: block;
+        flex: 3;
+        /*display: block;*/
         text-align: right;
         color: lightgrey;
         margin-right: 20px;
