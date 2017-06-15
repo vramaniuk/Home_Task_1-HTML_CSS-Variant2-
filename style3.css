@@ -89,18 +89,18 @@ footer span {
         margin: 20px auto;
         max-width: 1200px;
         background: #F7FBFF;
+        display: flex;
+        flex-wrap: wrap;
 
     }
 
     #box article {
-
         border-radius: 15px;
         width: 350px;
         height: 350px;
         background: #F1F1F1;
         margin: 5px;
         padding: 15px;
-        float: left;
         box-shadow: 5px 5px 5px grey;
 
     }
@@ -116,7 +116,6 @@ footer span {
     }
 
     footer {
-        overflow: hidden;
         border-radius: 30px;
         background-image: url("images/footer.jpg");
         width: 100%;
