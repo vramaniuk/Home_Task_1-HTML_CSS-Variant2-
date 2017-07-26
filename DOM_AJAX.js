@@ -20,21 +20,6 @@ window.onload =
 function errorHandler(error){
     alert(`Запрос к серверу не удался. Произошла ошибка: ${error.message}`);
 }
-        // return promise
-        //     .then(response => {
-        //             if (!response.ok) {console.log(response);
-        //                 return Promise.reject(new Error(
-        //                     `${response.status} ( ${response.statusText} )`
-        //                 ))
-        //             }
-        //             return response.json();
-        //         }
-        //     )
-        //     .then(result => {
-        //         putMyArticle(result);
-        //     })
-        //     .catch(error => alert(`Запрос к серверу не удался.Произошла ошибка: ${error.message}`))};
-
         function Article(result, i) {
             this.goURL = result.articles[i].url;
             this.goImageURL = result.articles[i].urlToImage;
