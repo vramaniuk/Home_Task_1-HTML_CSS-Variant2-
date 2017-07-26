@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", ready);
            function sendRequest() {
                return new Promise(function (resolve, reject) {
                    fetch(setURL(source))
-                       .then(response => {
+                       .then((response) => {
                            if (!response.ok)
                                throw new Error(`${response.status} ( ${response.statusText} )`);
                            resolve(response.json())
                        })
-                       .catch(reject => alert(`Запрос к серверу не удался.Произошла ошибка: ${reject.message}`));
+                       .catch((reject) => alert(`Запрос к серверу не удался.Произошла ошибка: ${reject.message}`));
                });
            }
 
